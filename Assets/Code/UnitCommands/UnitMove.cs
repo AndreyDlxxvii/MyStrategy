@@ -1,9 +1,11 @@
     using UnityEngine;
 
-    public class UnitMove : CommandExecutorBase<IMove>, IMove
+    public class UnitMove : IMove
     {
-        public override void ExecuteSpecificCommand(IMove command)
+        public Vector3 Target { get; }
+
+        public UnitMove(Vector3 target)
         {
-            Debug.Log("Move");
+            Target = target;
         }
     }
