@@ -28,6 +28,7 @@ public class MouseInteractionsHandler : MonoBehaviour
             .Where(c => c != null)
             .FirstOrDefault();
         _selectableValue.SetValue(_selectable);
+        
         if (!_selectableBilds.Contains(_selectable) && _selectable !=null)
         {
             _selectableBilds.Add(_selectable);
