@@ -10,7 +10,7 @@ public class MoveUnitCommandCommandCreator : CommandCreatorBase<IMove>
 
     [Inject] private void Init(Vector3Value groundClicks)
     {
-        groundClicks.OnNewValue += onNewValue;
+        groundClicks.OnValue += onNewValue;
     }
 
     private void onNewValue(Vector3 groundClick)
