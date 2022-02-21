@@ -13,7 +13,7 @@ public class UiModelInstaller : MonoInstaller
         Container.Bind<CommandCreatorBase<IAttack>>()
             .To<AttackUnitCommandCommandCreator>().AsTransient();
         Container.Bind<CommandCreatorBase<IMove>>()
-            .To<MovelUnitCommandCommandCreator>().AsTransient();
+            .To<MoveUnitCommandCommandCreator>().AsTransient();
         Container.Bind<CommandCreatorBase<IPatrol>>()
             .To<PatrolUnitCommandCommandCreator>().AsTransient();
         Container.Bind<CommandCreatorBase<IStop>>()

@@ -3794,8 +3794,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29c4c712a41472a8731221889c4ad1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _eventSystem: {fileID: 2020273333}
   _camera: {fileID: 963194227}
   _selectableValue: {fileID: 11400000, guid: 09699dbf35faf8a4496c56563935b335, type: 2}
+  _groundClicksRMB: {fileID: 11400000, guid: 908bbfbbc00283b4faf6ad404490f540, type: 2}
+  _groundTransform: {fileID: 844062559}
 --- !u!4 &1719033130
 Transform:
   m_ObjectHideFlags: 0
