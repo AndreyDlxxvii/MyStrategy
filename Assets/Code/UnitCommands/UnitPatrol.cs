@@ -1,9 +1,6 @@
     using UnityEngine;
 
-    public class UnitPatrol : CommandExecutorBase<IPatrol>, IPatrol
+    public class UnitPatrol : IPatrol
     {
-        public override void ExecuteSpecificCommand(IPatrol command)
-        {
-            Debug.Log("Patrol");
-        }
+
     }

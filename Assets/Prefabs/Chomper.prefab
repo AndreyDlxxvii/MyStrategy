@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: -6996858637338324548}
   - component: {fileID: 8486319913698699159}
   - component: {fileID: 8294629742637460246}
-  - component: {fileID: -5797196454132185034}
-  - component: {fileID: -5676259450389704456}
-  - component: {fileID: -5056411595202224627}
-  - component: {fileID: -3766385709800830137}
+  - component: {fileID: 6934972447503342576}
+  - component: {fileID: 6559079590286126366}
+  - component: {fileID: 5148569661213275793}
+  - component: {fileID: 8273300070759355853}
   m_Layer: 0
   m_Name: Chomper
   m_TagString: Untagged
@@ -83,7 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 50
   _icon: {fileID: 21300000, guid: 11716f342b9a4f14bb192713d6efa90b, type: 3}
---- !u!114 &-5797196454132185034
+--- !u!114 &6934972447503342576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,10 +92,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8122317299159111655}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3a72a66bde04b8aa2ed3c623aa72155, type: 3}
+  m_Script: {fileID: 11500000, guid: 13285dc533214b1ebc2c44aaa81ff313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-5676259450389704456
+--- !u!114 &6559079590286126366
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,10 +104,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8122317299159111655}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d57d711516a7eff43961c104487ff282, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fcc922f8e8842ee937f0f9f27c32c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-5056411595202224627
+--- !u!114 &5148569661213275793
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,10 +116,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8122317299159111655}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f36162751247d846b72d8ca5335f50d, type: 3}
+  m_Script: {fileID: 11500000, guid: 37e20165dd094cc9bbf063f6e8bc80b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-3766385709800830137
+--- !u!114 &8273300070759355853
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8122317299159111655}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4804262e684e8446b9a4d05425a701e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9af64fcb4f2b4768b5a12bc776442253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &326870325689945867
