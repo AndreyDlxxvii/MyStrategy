@@ -14,6 +14,7 @@ namespace Code.UserControlSystem
         [SerializeField] private Image _sliderFillImage;
         
         [SerializeField] private SelectableValue _selectedValue;
+        
 
         private void Start()
         {
@@ -23,13 +24,11 @@ namespace Code.UserControlSystem
 
         private void onSelected(ISelectable selected)
         {
-            
             _selectedImage.enabled = selected != null;
             _healthSlider.gameObject.SetActive(selected != null);
             _text.enabled = selected != null;
-            selected.Contour.OutlineWidth = 0f;
             
-
+            
             if (selected != null)
             {
                 _selectedImage.sprite = selected.Icon;
@@ -40,7 +39,7 @@ namespace Code.UserControlSystem
                 var color = Color.Lerp(Color.red, Color.green, selected.Health / (float)selected.MaxHealth);
                 _sliderBackground.color = color * 0.5f;
                 _sliderFillImage.color = color;
-                selected.Contour.OutlineWidth = 2f;
+                selected.Outline.OutlineWidth = 2f;
             }
         }
 

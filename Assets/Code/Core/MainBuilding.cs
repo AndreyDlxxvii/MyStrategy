@@ -7,20 +7,23 @@ public class MainBuilding : MonoBehaviour, IUnitProducer, ISelectable
     public float Health => _health;
     public float MaxHealth => _maxHealth;
     public Sprite Icon => _icon;
-    public Outline Contour => _outline;
+    public Contour Outline => _contour;
 
     [SerializeField] private GameObject _prefabUnit;
     [SerializeField] private Transform _parentTransform;
     [SerializeField] private float _health = 1000f;
     [SerializeField] private Sprite _icon;
 
-    private Outline _outline;
+    private float _contourWidht;
+    private Contour _contour;
+
+    private bool _flag = false;
     
     private float _maxHealth = 1000f;
 
-    private void Start()
+    private void Awake()
     {
-        _outline = GetComponent<Outline>();
+        _contour = GetComponent<Contour>();
     }
 
     public void CreateUnit()
