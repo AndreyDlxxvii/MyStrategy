@@ -1,12 +1,8 @@
 using System;
 using Zenject;
 
-public class ProduceUnitCommandCommandCreator : CommandCreatorBase<IProduceUnitCommand>
+public class ProduceUnitCommandCommandCreator : CancellableCommandCreatorBase<IProduceUnitCommand, ISelectable>
 {
-    [Inject] private AssetsContext _context;
-
-    protected override void classSpecificCommandCreation(Action<IProduceUnitCommand> creationCallback)
-    {
-        creationCallback?.Invoke(_context.Inject(new ProduceUnitCommand()));
-    }
+    protected override IProduceUnitCommand createCommand(ISelectable argument) => new ProduceUnitCommand();
+  
 }
