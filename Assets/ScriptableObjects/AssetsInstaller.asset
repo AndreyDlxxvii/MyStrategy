@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _legacyContext: {fileID: 11400000, guid: c8fcf65852d7fe148aa7463c24581331, type: 2}
   _groundClicksRMB: {fileID: 11400000, guid: 7f905eb4ea682fa48acbfd09fe63d4af, type: 2}
+  _attackableClicksRMB: {fileID: 11400000, guid: c920201632182084ba76df1dcd9a8b67, type: 2}
   _selectables: {fileID: 11400000, guid: cb9f97ce3bc44b84b86462a6454c669b, type: 2}

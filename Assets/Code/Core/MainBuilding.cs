@@ -1,10 +1,12 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class MainBuilding : CommandExecutorBase<IProduceUnitCommand>, ISelectable
+public class MainBuilding : CommandExecutorBase<IProduceUnitCommand>, ISelectable, IAttackable
 {
     public float Health => _health;
     public float MaxHealth => _maxHealth;
+    
+    public Transform StartPoint { get; }
     public Sprite Icon => _icon;
     public Contour Outline => _contour;
     
