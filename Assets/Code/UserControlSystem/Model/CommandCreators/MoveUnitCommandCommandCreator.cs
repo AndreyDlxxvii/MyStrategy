@@ -7,10 +7,10 @@ public class MoveUnitCommandCommandCreator : CommandCreatorBase<IMove>
     [Inject] private AssetsContext _context;
 
     private Action<IMove> _creationCallback;
-
+    
     [Inject] private void Init(Vector3Value groundClicks)
     {
-        groundClicks.OnNewValue += onNewValue;
+        groundClicks.OnSelected += onNewValue;
     }
 
     private void onNewValue(Vector3 groundClick)
