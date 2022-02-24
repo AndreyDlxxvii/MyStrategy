@@ -1,6 +1,7 @@
 using UnityEngine;
 using Zenject;
 
+
 public class UiModelInstaller : MonoInstaller
 {
     [SerializeField] private AssetsContext _legacyContext;

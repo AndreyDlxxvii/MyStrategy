@@ -8,7 +8,7 @@ public class CommandButtonsPresenter : MonoBehaviour
     [SerializeField] private CommandButtonsView _view;
 
     [Inject] private CommandButtonsModel _model;
-
+    
     private ISelectable _currentSelectable;
 
     private void Start()

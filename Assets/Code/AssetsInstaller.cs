@@ -15,6 +15,6 @@ public class AssetsInstaller : ScriptableObjectInstaller<AssetsInstaller>
             .FromInstance(_attackableClicksRMB);
         Container.Bind<IAwaitable<Vector3>>()
             .FromInstance(_groundClicksRMB);
-
+        
     }
 }
