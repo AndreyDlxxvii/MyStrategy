@@ -1,12 +1,12 @@
 using System;
+using UnityEngine;
 using Zenject;
 
-public class PatrolUnitCommandCommandCreator : CommandCreatorBase<IPatrol>
+public class PatrolUnitCommandCommandCreator : CancellableCommandCreatorBase<IPatrol, Vector3>
 {
     [Inject] private AssetsContext _context;
+    [Inject] private SelectableValue _selectable;
 
-    protected override void classSpecificCommandCreation(Action<IPatrol> creationCallback)
-    {
-        creationCallback?.Invoke(_context.Inject(new UnitPatrol()));
-    }
+    protected override IPatrol createCommand(Vector3 argument) => new UnitPatrol(_selectable.CurrentValue.StartPoint.position, argument);
+
 }
