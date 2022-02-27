@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Zenject;
+using UniRx;
 
 public class MouseInteractionsHandler : MonoBehaviour
 {
@@ -18,42 +19,102 @@ public class MouseInteractionsHandler : MonoBehaviour
     private List<ISelectable> _selectableBilds = new List<ISelectable>();
     private Plane _groundPlane;
 
-    private void Start()
+    // private void Start()
+    // {
+    //     _groundPlane = new Plane(_groundTransform.up, 0);
+    // }
+
+    // private void Update()
+    // {
+    //     if (!Input.GetMouseButtonUp(0) && !Input.GetMouseButton(1))
+    //         return;
+    //     
+    //
+    //     if (_eventSystem.IsPointerOverGameObject())
+    //         return;
+    //
+    //     var ray = _camera.ScreenPointToRay(Input.mousePosition);
+    //     var hits = Physics.RaycastAll(ray);
+    //     
+    //     if (Input.GetMouseButtonUp(0))
+    //     {
+    //         if (IfHit<ISelectable>(hits, out _selectable))
+    //         {
+    //             _selectableValue.SetValue(_selectable);
+    //         }
+    //         else
+    //         {
+    //             _selectable = null;
+    //         }
+    //         Outline();
+    //     }
+    //     else
+    //     {
+    //         if (IfHit<IAttackable>(hits, out var attackable))
+    //         {
+    //             _attackableValue.SetValue(attackable);
+    //         }
+    //         else if (_groundPlane.Raycast(ray,out var wayPoint))
+    //         {
+    //             _groundClicksRMB.SetValue(ray.origin + ray.direction * wayPoint);
+    //         }
+    //     }
+    // }
+
+    [Inject]
+    private void Init()
     {
         _groundPlane = new Plane(_groundTransform.up, 0);
-    }
 
-    private void Update()
-    {
-        if (!Input.GetMouseButtonUp(0) && !Input.GetMouseButton(1))
-            return;
-        
+        //Сначала берем поток всех кадров, в которых клики на блочит ui
+        var nonBlockedByUiFramesStream = Observable.EveryUpdate()
+            .Where(_ => !_eventSystem.IsPointerOverGameObject());
 
-        if (_eventSystem.IsPointerOverGameObject())
-            return;
+        //Затем формируем из него два потока кликов — правой и левой кнопкой мыши
+        var leftClicksStream = nonBlockedByUiFramesStream
+            .Where(_ => Input.GetMouseButtonDown(0));
+        var rightClicksStream = nonBlockedByUiFramesStream
+            .Where(_ => Input.GetMouseButtonDown(1));
 
-        var ray = _camera.ScreenPointToRay(Input.mousePosition);
-        var hits = Physics.RaycastAll(ray);
-        
-        if (Input.GetMouseButtonUp(0))
+        //Выбираем лучи, стреляющие из точки экрана
+        var lmbRays = leftClicksStream
+            .Select(_ => _camera.ScreenPointToRay(Input.mousePosition));
+        var rmbRays = rightClicksStream
+            .Select(_ => _camera.ScreenPointToRay(Input.mousePosition));
+
+        //Выбираем из них все пересечения с лучом
+        var lmbHitsStream = lmbRays
+            .Select(ray => Physics.RaycastAll(ray));
+        //Для правой кнопки мыши нам еще понадобится сам луч, поэтому передаем его в кортеже
+        var rmbHitsStream = rmbRays
+            .Select(ray => (ray, Physics.RaycastAll(ray)));
+
+        //наконец подписываемся на результат и анализируем подробно что нам нужно из этих потоков
+        lmbHitsStream.Subscribe(hits =>
         {
-            if (IfHit<ISelectable>(hits, out var selectable))
+            if (IfHit(hits, out _selectable))
             {
-                _selectableValue.SetValue(selectable);
-                Outline(selectable);
+                _selectableValue.SetValue(_selectable);
             }
-        }
-        else
+            else
+            {
+                _selectable = null;
+            }
+            Outline();
+        });
+        rmbHitsStream.Subscribe(data =>
         {
+            var (ray, hits) = data;
+
             if (IfHit<IAttackable>(hits, out var attackable))
             {
                 _attackableValue.SetValue(attackable);
             }
-            else if (_groundPlane.Raycast(ray,out var wayPoint))
+            else if (_groundPlane.Raycast(ray, out var enter))
             {
-                _groundClicksRMB.SetValue(ray.origin + ray.direction * wayPoint);
+                _groundClicksRMB.SetValue(ray.origin + ray.direction * enter);
             }
-        }
+        });
     }
 
     private bool IfHit<T>(RaycastHit[] hits, out T result) where T : class
@@ -72,13 +133,13 @@ public class MouseInteractionsHandler : MonoBehaviour
         return result != default;
     }
 
-    private void Outline(ISelectable value)
+    private void Outline()
     {
-        if (!_selectableBilds.Contains(value) && value != null)
+        if (!_selectableBilds.Contains(_selectable) && _selectable != null)
         {
-            _selectableBilds.Add(value);
+            _selectableBilds.Add(_selectable);
         }
-        else if (value == null)
+        else if (_selectable == null)
         {
             foreach (var bilds in _selectableBilds)
             {

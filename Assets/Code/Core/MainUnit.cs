@@ -8,7 +8,6 @@ public class MainUnit : MonoBehaviour, ISelectable, IAttackable
     public float Health => _health;
     public float MaxHealth => _maxHealth;
     
-    //todo заполнить трансформ    
     public Transform StartPoint { get; private set; }
     public Sprite Icon => _icon;
     public Contour Outline => _contour;

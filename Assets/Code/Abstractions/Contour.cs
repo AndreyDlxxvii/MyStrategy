@@ -53,7 +53,7 @@ using UnityEngine;
     private Color outlineColor = Color.red;
 
     [SerializeField, Range(0f, 10f)]
-    private float outlineWidth = 2f;
+    private float outlineWidth = 3f;
   
 
     [Header("Optional")]
