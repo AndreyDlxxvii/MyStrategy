@@ -15,8 +15,7 @@ public abstract class CancellableCommandCreatorBase<TCommand, TArgument> : Comma
         try
         {
             var argument = await _awaitableArgument.WithCancellation(_ctSource.Token);
-            creationCallback?
-                .Invoke(_context.Inject(createCommand(argument)));
+            creationCallback?.Invoke(_context.Inject(createCommand(argument)));
         }
         catch { }
     }
