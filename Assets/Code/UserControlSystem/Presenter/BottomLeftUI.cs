@@ -1,6 +1,9 @@
+using System;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class BottomLeftUI : MonoBehaviour
 {
@@ -10,12 +13,13 @@ public class BottomLeftUI : MonoBehaviour
     [SerializeField] private Image _sliderBackground;
     [SerializeField] private Image _sliderFillImage;
 
-    [SerializeField] private SelectableValue _selectedValue;
+    //[SerializeField] private SelectableValue _selectedValue;
+    
+    [Inject] private IObservable<ISelectable> _selectedValues;
     
     private void Start()
     {
-        _selectedValue.OnSelected += onSelected;
-        onSelected(_selectedValue.CurrentValue);
+        _selectedValues.Subscribe(onSelected);
     }
 
     private void onSelected(ISelectable selected)
@@ -39,8 +43,8 @@ public class BottomLeftUI : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        _selectedValue.OnSelected -= onSelected;
-    }
+    // private void OnDestroy()
+    // {
+    //     _selectedValue.OnSelected -= onSelected;
+    // }
 }
