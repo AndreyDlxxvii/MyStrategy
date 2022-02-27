@@ -7,6 +7,7 @@ public class ProduceUnitCommandCommandCreator : CommandCreatorBase<IProduceUnitC
 
     protected override void classSpecificCommandCreation(Action<IProduceUnitCommand> creationCallback)
     {
-        creationCallback?.Invoke(_context.Inject(new ProduceUnitCommandHeir()));
+        creationCallback?.Invoke(_context.Inject(new ProduceUnitCommand()));
+
     }
 }
