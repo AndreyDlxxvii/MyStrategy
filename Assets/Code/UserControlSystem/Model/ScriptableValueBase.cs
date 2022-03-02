@@ -27,12 +27,17 @@ public class ScriptableValueBase <T> : ScriptableObject, IAwaitable<T>
     public virtual void SetValue(T value)
     {
         CurrentValue = value;
+        OnSetValue(value);
         OnSelected?.Invoke(value);
+    }
+    
+    protected virtual void OnSetValue(T value)
+    {
+
     }
 
     public IAwaiter<T> GetAwaiter()
     {
         return new NewValueNotifier<T>(this);
     }
-
 }

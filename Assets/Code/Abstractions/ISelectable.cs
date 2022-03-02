@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public interface ISelectable : IHealthHolder
+public interface ISelectable : IHealthHolder, IIconHolder
 {
     Transform StartPoint { get; }
-    Sprite Icon { get; }
     Contour Outline { get; }
 }

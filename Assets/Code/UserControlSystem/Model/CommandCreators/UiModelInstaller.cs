@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -19,6 +20,8 @@ public class UiModelInstaller : MonoInstaller
         Container.Bind<Vector3Value>().FromInstance(_vector3Value);
         Container.Bind<AttackableValue>().FromInstance(_attackableValue);
 
+        Container.Bind<BottomCenterModel>().AsTransient();
+
         Container.Bind<CommandCreatorBase<IProduceUnitCommand>>()
             .To<ProduceUnitCommandCommandCreator>().AsTransient();
         Container.Bind<CommandCreatorBase<IAttack>>()
@@ -29,6 +32,11 @@ public class UiModelInstaller : MonoInstaller
             .To<PatrolUnitCommandCommandCreator>().AsTransient();
         Container.Bind<CommandCreatorBase<IStop>>()
             .To<StopUnitCommandCommandCreator>().AsTransient();
+        
+        Container.Bind<float>().WithId("Chomper").FromInstance(5f);
+        Container.Bind<string>().WithId("Chomper").FromInstance("Chomper");
+
+        Container.Bind<IObservable<ISelectable>>().FromInstance(_selectableValue.OnSelectSubscribe);
 
         Container.Bind<CommandButtonsModel>().AsTransient();
     }
