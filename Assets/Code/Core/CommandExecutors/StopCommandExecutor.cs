@@ -1,10 +1,11 @@
-using UnityEngine;
+using System.Threading;
+using System.Threading.Tasks;
 
 public class StopCommandExecutor : CommandExecutorBase<IStop>
 {
-
-    public override void ExecuteSpecificCommand(IStop command)
+    public CancellationTokenSource CancellationToken { get; set; }
+    public override async Task ExecuteSpecificCommand(IStop command)
     {
-        Debug.Log($"{name} has stopped!");
+        CancellationToken?.Cancel();
     }
 }
