@@ -1,7 +1,8 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class MainBuilding : CommandExecutorBase<IProduceUnitCommand>, ISelectable, IAttackable
+public class MainBuilding : MonoBehaviour, ISelectable, IAttackable
 {
     public float Health => _health;
     public float MaxHealth => _maxHealth;
@@ -9,6 +10,8 @@ public class MainBuilding : CommandExecutorBase<IProduceUnitCommand>, ISelectabl
     public Transform StartPoint { get; }
     public Sprite Icon => _icon;
     public Contour Outline => _contour;
+    
+    public Vector3 RallyPoint { get; set; }
     
     [SerializeField] private float _health = 1000f;
     [SerializeField] private Sprite _icon;
@@ -23,9 +26,9 @@ public class MainBuilding : CommandExecutorBase<IProduceUnitCommand>, ISelectabl
         _contour = GetComponent<Contour>();
     }
 
-    public override void ExecuteSpecificCommand(IProduceUnitCommand command)
-    {
-        // Instantiate(command.UnitPrefab, new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)), 
-        //     Quaternion.identity, _unitsParent);
-    }
+    // public override async Task ExecuteSpecificCommand(IProduceUnitCommand command)
+    // {
+    //     // Instantiate(command.UnitPrefab, new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)), 
+    //     //     Quaternion.identity, _unitsParent);
+    // }
 }

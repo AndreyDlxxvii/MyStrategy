@@ -16,7 +16,7 @@ public class ScriptableValueBase <T> : ScriptableObject, IAwaitable<T>
         private void onNewValue(TAwaited obj)
         {
             _scriptableObjectValueBase.OnSelected -= onNewValue;
-            OnWaitFinish(obj);
+            onWaitFinish(obj);
         }
 
     }

@@ -22,6 +22,8 @@ public class UiModelInstaller : MonoInstaller
 
         Container.Bind<BottomCenterModel>().AsTransient();
 
+        Container.Bind<CommandCreatorBase<ISetRallyPointCommand>>()
+            .To<SetRallyPointCommandCreator>().AsTransient();
         Container.Bind<CommandCreatorBase<IProduceUnitCommand>>()
             .To<ProduceUnitCommandCommandCreator>().AsTransient();
         Container.Bind<CommandCreatorBase<IAttack>>()
@@ -32,6 +34,7 @@ public class UiModelInstaller : MonoInstaller
             .To<PatrolUnitCommandCommandCreator>().AsTransient();
         Container.Bind<CommandCreatorBase<IStop>>()
             .To<StopUnitCommandCommandCreator>().AsTransient();
+
         
         Container.Bind<float>().WithId("Chomper").FromInstance(5f);
         Container.Bind<string>().WithId("Chomper").FromInstance("Chomper");
@@ -39,5 +42,6 @@ public class UiModelInstaller : MonoInstaller
         Container.Bind<IObservable<ISelectable>>().FromInstance(_selectableValue.OnSelectSubscribe);
 
         Container.Bind<CommandButtonsModel>().AsTransient();
+        
     }
 }

@@ -22,7 +22,7 @@ public abstract class AwaiterBase<TAwaited> : IAwaiter<TAwaited>
         }
     }
     
-    protected void OnWaitFinish(TAwaited result)
+    protected void onWaitFinish(TAwaited result)
     {
         _awaited = result;
         _isCompleted = true;
