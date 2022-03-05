@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
-public partial class AttackCommandExecutor : CommandExecutorBase<IAttack>
+public class AttackCommandExecutor : CommandExecutorBase<IAttack>
 {
 	[SerializeField] private Animator _animator;
 	[SerializeField] private StopCommandExecutor _stopCommandExecutor;
