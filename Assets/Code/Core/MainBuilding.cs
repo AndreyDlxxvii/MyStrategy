@@ -6,7 +6,7 @@ public class MainBuilding : MonoBehaviour, ISelectable, IAttackable
 {
     public float Health => _health;
     public float MaxHealth => _maxHealth;
-    
+
     public Transform StartPoint { get; }
     public Sprite Icon => _icon;
     public Contour Outline => _contour;
@@ -24,6 +24,20 @@ public class MainBuilding : MonoBehaviour, ISelectable, IAttackable
     private void Awake()
     {
         _contour = GetComponent<Contour>();
+    }
+    
+    public void RecieveDamage(int amount)
+    {
+        if (_health <= 0)
+        {
+            return;
+        }
+        _health -= amount;
+        if (_health <= 0)
+        {
+            Destroy(gameObject);
+        }
+
     }
 
     // public override async Task ExecuteSpecificCommand(IProduceUnitCommand command)
