@@ -44,15 +44,23 @@ public class MouseInteractionsHandler : MonoBehaviour
         
         lmbHitsStream.Subscribe(hits =>
         {
-            if (IfHit(hits, out _selectable))
+            if (IfHit <ISelectable> (hits, out var selectable))
             {
-                _selectableValue.SetValue(_selectable);
+                _selectableValue.SetValue(selectable);
+                if (_selectable != null)
+                {
+                    _selectable.Outline.OutlineWidth = 0f;
+                }
+                _selectable = selectable;
             }
             else
             {
-                _selectable = null;
+                if (_selectable != null)
+                {
+                    _selectable.Outline.OutlineWidth = 0f;
+                }
+                _selectableValue.SetValue(null);
             }
-            Outline();
         });
         rmbHitsStream.Subscribe((ray, hits) =>
         {
@@ -81,23 +89,5 @@ public class MouseInteractionsHandler : MonoBehaviour
             .FirstOrDefault();
 
         return result != default;
-    }
-
-    private void Outline()
-    {
-        
-        foreach (var bilds in _selectableBilds)
-        {
-            bilds.Outline.OutlineWidth = 0f;
-        }
-        
-        if (!_selectableBilds.Contains(_selectable) && _selectable != null)
-        {
-            _selectableBilds.Add(_selectable);
-        }
-        else
-        {
-            _selectableBilds.Clear();
-        }
     }
 }
