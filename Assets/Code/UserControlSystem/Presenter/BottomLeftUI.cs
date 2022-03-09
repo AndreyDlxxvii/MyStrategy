@@ -12,8 +12,6 @@ public class BottomLeftUI : MonoBehaviour
     [SerializeField] private TMP_Text _text;
     [SerializeField] private Image _sliderBackground;
     [SerializeField] private Image _sliderFillImage;
-
-    //[SerializeField] private SelectableValue _selectedValue;
     
     [Inject] private IObservable<ISelectable> _selectedValues;
     
@@ -42,9 +40,4 @@ public class BottomLeftUI : MonoBehaviour
             selected.Outline.OutlineWidth = 2f;
         }
     }
-
-    // private void OnDestroy()
-    // {
-    //     _selectedValue.OnSelected -= onSelected;
-    // }
 }

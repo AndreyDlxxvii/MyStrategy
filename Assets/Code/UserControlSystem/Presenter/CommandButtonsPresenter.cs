@@ -24,6 +24,7 @@ public class CommandButtonsPresenter : MonoBehaviour
 
     private void onSelected(ISelectable selectable)
     {
+        _view.Clear();
         if (_currentSelectable == selectable)
         {
             return;
@@ -31,10 +32,11 @@ public class CommandButtonsPresenter : MonoBehaviour
         if (_currentSelectable != null)
         {
             _model.OnSelectionChanged();
+            //_model.OnCommandButtonClicked();
         }
         _currentSelectable = selectable;
 
-        _view.Clear();
+        
         if (selectable != null)
         {
             var commandExecutors = new List<ICommandExecutor>();

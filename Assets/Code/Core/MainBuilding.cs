@@ -15,7 +15,7 @@ public class MainBuilding : MonoBehaviour, ISelectable, IAttackable
     
     [SerializeField] private float _health = 1000f;
     [SerializeField] private Sprite _icon;
-    [SerializeField] private Transform _unitsParent;
+    //[SerializeField] private Transform _unitsParent;
 
     private float _contourWidht;
     private Contour _contour;
@@ -37,12 +37,5 @@ public class MainBuilding : MonoBehaviour, ISelectable, IAttackable
         {
             Destroy(gameObject);
         }
-
     }
-
-    // public override async Task ExecuteSpecificCommand(IProduceUnitCommand command)
-    // {
-    //     // Instantiate(command.UnitPrefab, new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)), 
-    //     //     Quaternion.identity, _unitsParent);
-    // }
 }

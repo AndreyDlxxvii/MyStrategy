@@ -14,11 +14,9 @@ public class ChomperCommandsQueue : MonoBehaviour, ICommandsQueue
 
     public ICommand CurrentCommand => _innerCollection.Count > 0 ? _innerCollection[0] : default;
     
-    [Inject]
-    private void Init()
+    [Inject] private void Init()
     {
-        _innerCollection
-            .ObserveAdd().Subscribe(onNewCommand).AddTo(this);
+        _innerCollection.ObserveAdd().Subscribe(onNewCommand).AddTo(this);
     }
     
     private void onNewCommand(ICommand command, int index)

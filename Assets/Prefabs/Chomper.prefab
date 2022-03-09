@@ -1443,6 +1443,8 @@ GameObject:
   - component: {fileID: -5575513685093601886}
   - component: {fileID: 9161411796824697897}
   - component: {fileID: -9065511406445245207}
+  - component: {fileID: 8704500599306108983}
+  - component: {fileID: -5070771153676889995}
   m_Layer: 0
   m_Name: Chomper
   m_TagString: Untagged
@@ -1750,6 +1752,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10752df4fb394a06982c41d0091630e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8704500599306108983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735508813686040367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef6380363464584bd106c142ff0aa74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5070771153676889995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735508813686040367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f982d3b5d4864490b11828f57b822eb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _queue: {fileID: -3335499434267721985}
 --- !u!1 &8735508813694468353
 GameObject:
   m_ObjectHideFlags: 0

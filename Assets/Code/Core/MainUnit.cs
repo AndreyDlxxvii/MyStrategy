@@ -45,7 +45,7 @@ public class MainUnit : MonoBehaviour, ISelectable, IAttackable, IUnit, IDamageD
         _health -= amount;
         if (_health <= 0)
         {
-            _animator.SetTrigger("PlayDead");
+            _animator.SetTrigger("PlayerDead");
             Invoke(nameof(destroy), 1f);
         }
     }

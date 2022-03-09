@@ -19,48 +19,6 @@ public class MouseInteractionsHandler : MonoBehaviour
     private List<ISelectable> _selectableBilds = new List<ISelectable>();
     private Plane _groundPlane;
 
-    // private void Start()
-    // {
-    //     _groundPlane = new Plane(_groundTransform.up, 0);
-    // }
-
-    // private void Update()
-    // {
-    //     if (!Input.GetMouseButtonUp(0) && !Input.GetMouseButton(1))
-    //         return;
-    //     
-    //
-    //     if (_eventSystem.IsPointerOverGameObject())
-    //         return;
-    //
-    //     var ray = _camera.ScreenPointToRay(Input.mousePosition);
-    //     var hits = Physics.RaycastAll(ray);
-    //     
-    //     if (Input.GetMouseButtonUp(0))
-    //     {
-    //         if (IfHit<ISelectable>(hits, out _selectable))
-    //         {
-    //             _selectableValue.SetValue(_selectable);
-    //         }
-    //         else
-    //         {
-    //             _selectable = null;
-    //         }
-    //         Outline();
-    //     }
-    //     else
-    //     {
-    //         if (IfHit<IAttackable>(hits, out var attackable))
-    //         {
-    //             _attackableValue.SetValue(attackable);
-    //         }
-    //         else if (_groundPlane.Raycast(ray,out var wayPoint))
-    //         {
-    //             _groundClicksRMB.SetValue(ray.origin + ray.direction * wayPoint);
-    //         }
-    //     }
-    // }
-
     [Inject]
     private void Init()
     {
@@ -127,17 +85,18 @@ public class MouseInteractionsHandler : MonoBehaviour
 
     private void Outline()
     {
+        
+        foreach (var bilds in _selectableBilds)
+        {
+            bilds.Outline.OutlineWidth = 0f;
+        }
+        
         if (!_selectableBilds.Contains(_selectable) && _selectable != null)
         {
             _selectableBilds.Add(_selectable);
         }
-        else if (_selectable == null)
+        else
         {
-            foreach (var bilds in _selectableBilds)
-            {
-                bilds.Outline.OutlineWidth = 0f;
-            }
-        
             _selectableBilds.Clear();
         }
     }
