@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -7,7 +6,7 @@ public class CommandButtonsPresenter : MonoBehaviour
 {
     [SerializeField] private SelectableValue _selectable;
     [SerializeField] private CommandButtonsView _view;
-    
+
     [Inject] private CommandButtonsModel _model;
     
     private ISelectable _currentSelectable;
@@ -25,6 +24,7 @@ public class CommandButtonsPresenter : MonoBehaviour
 
     private void onSelected(ISelectable selectable)
     {
+        _view.Clear();
         if (_currentSelectable == selectable)
         {
             return;
@@ -32,15 +32,17 @@ public class CommandButtonsPresenter : MonoBehaviour
         if (_currentSelectable != null)
         {
             _model.OnSelectionChanged();
+            //_model.OnCommandButtonClicked();
         }
         _currentSelectable = selectable;
 
-        _view.Clear();
+        
         if (selectable != null)
         {
             var commandExecutors = new List<ICommandExecutor>();
             commandExecutors.AddRange((selectable as Component).GetComponentsInParent<ICommandExecutor>());
-            _view.MakeLayout(commandExecutors);
+            var queue = (selectable as Component).GetComponentInParent<ICommandsQueue>();
+            _view.MakeLayout(commandExecutors, queue);
         }
     }
 }
